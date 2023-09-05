@@ -36,7 +36,9 @@ public class LogicTest {
         Figure bishop = new BishopBlack(Cell.A1);
         logic.add(bishop);
         logic.add(new PawnBlack(Cell.B2));
-        assertThrows(OccupiedCellException.class, () -> logic.move(Cell.A1, Cell.B2));
+        OccupiedCellException exception = assertThrows(OccupiedCellException.class,
+                () -> logic.move(Cell.A1, Cell.B2));
+        assertThat(exception.getMessage()).isEqualTo("Another figure already occupies a cell B2");
     }
 
     @Test

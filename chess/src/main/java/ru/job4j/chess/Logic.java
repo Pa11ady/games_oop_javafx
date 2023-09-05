@@ -22,10 +22,10 @@ public final class Logic {
 
     private boolean free(Cell[] steps) throws OccupiedCellException {
         for (Cell cell : steps) {
-            for (int index = 0; index != figures.length; index++) {
-                Figure figure = figures[index];
+            for (Figure figure : figures) {
                 if (figure != null && figure.position().equals(cell)) {
-                    throw new OccupiedCellException();
+                    throw new OccupiedCellException(
+                            String.format("Another figure already occupies a cell %s", cell));
                 }
             }
         }
